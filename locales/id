@@ -1,0 +1,36 @@
+// numeral.js locale configuration
+// locale : Indonesia
+// author : James Azarja : https://github.com/jazarja/
+
+(function (global, factory) {
+    if (typeof define === 'function' && define.amd) {
+        define(['../numeral'], factory);
+    } else if (typeof module === 'object' && module.exports) {
+        factory(require('../numeral'));
+    } else {
+        factory(global.numeral);
+    }
+}(this, function (numeral) {
+    numeral.register('locale', 'id', {
+        delimiters: {
+            thousands: '.',
+            decimal: ','
+        },
+        abbreviations: {
+            thousand: 'rb',
+            million: 'jt',
+            billion: 'm',
+            trillion: 't'
+        },
+        ordinal: function (number) {
+            var b = number % 10;
+            return (~~ (number % 100 / 10) === 1) ? '' :
+                (b === 1) ? '' :
+                (b === 2) ? '' :
+                (b === 3) ? '' : '';
+        },
+        currency: {
+            symbol: 'Rp.'
+        }
+    });
+}));
